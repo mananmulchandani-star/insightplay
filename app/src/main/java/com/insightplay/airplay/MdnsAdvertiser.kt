@@ -293,16 +293,14 @@ class MdnsAdvertiser(private val context: Context) {
     }
 
     private fun generatePublicKey(): String {
-        // Generate a random 32-byte public key (hex encoded)
-        // In production, this would be a proper Ed25519 public key
-        val bytes = ByteArray(32)
-        java.security.SecureRandom().nextBytes(bytes)
-        return bytes.joinToString("") { "%02x".format(it) }
+        // Must match the core java-airplay-library public key
+        // to pass the Ed25519 pairing handshake
+        return "b07727d6f6cd6e08b58ede525ec3cdeaa252ad9f683feb212ef8a205246554e7"
     }
 
     private fun generatePairingId(): String {
-        // Generate a UUID-like pairing identifier
-        return java.util.UUID.randomUUID().toString()
+        // Must match the core java-airplay-library pairing ID
+        return "2e388006-13ba-4041-9a67-25dd4a43d536"
     }
 
     fun isAdvertising(): Boolean = isRegistered
