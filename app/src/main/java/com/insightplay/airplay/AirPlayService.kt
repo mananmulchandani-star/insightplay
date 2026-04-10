@@ -188,11 +188,8 @@ class AirPlayService : Service() {
                     videoRenderer?.queueFrame(video)
                 }
 
-                override fun onVideoSrcDisconnect() {
-                    Log.i(TAG, "Video source disconnected")
-                    scope.launch(Dispatchers.Main) {
-                        handleDisconnection()
-                    }
+                override fun onVideoFormat(videoStreamInfo: com.github.serezhka.jap2lib.rtsp.VideoStreamInfo) {
+                    Log.i(TAG, "Video format received")
                 }
 
                 override fun onAudio(audio: ByteArray) {
@@ -200,11 +197,8 @@ class AirPlayService : Service() {
                     audioRenderer?.queueAudio(audio)
                 }
 
-                override fun onAudioSrcDisconnect() {
-                    Log.i(TAG, "Audio source disconnected")
-                    scope.launch(Dispatchers.Main) {
-                        handleDisconnection()
-                    }
+                override fun onAudioFormat(audioStreamInfo: com.github.serezhka.jap2lib.rtsp.AudioStreamInfo) {
+                    Log.i(TAG, "Audio format received")
                 }
             }
 

@@ -203,7 +203,7 @@ class RtspHandler(private val port: Int = 7000) {
 
             "PLAY" -> {
                 sessions[clientId] = SessionState.PLAYING
-                withContext(Dispatchers.Main) {
+                scope.launch(Dispatchers.Main) {
                     onMirroringStarted?.invoke()
                 }
                 buildResponse(200, "OK", cseq, mapOf(
@@ -218,7 +218,7 @@ class RtspHandler(private val port: Int = 7000) {
 
             "TEARDOWN" -> {
                 sessions[clientId] = SessionState.TEARDOWN
-                withContext(Dispatchers.Main) {
+                scope.launch(Dispatchers.Main) {
                     onMirroringStopped?.invoke()
                 }
                 buildResponse(200, "OK", cseq)
@@ -362,7 +362,5 @@ class RtspHandler(private val port: Int = 7000) {
         scope.cancel()
     }
 
-    private suspend fun withContext(context: CoroutineContext, block: () -> Unit) {
-        kotlinx.coroutines.withContext(context) { block() }
-    }
+
 }
