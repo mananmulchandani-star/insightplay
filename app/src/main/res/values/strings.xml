@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Insight Play</string>
+
+    <!-- Splash -->
+    <string name="tagline">Cast Anything. Instantly.</string>
+    <string name="wordmark_insight">Insight</string>
+    <string name="wordmark_play">Play</string>
+
+    <!-- Main Screen -->
+    <string name="ready_message">Ready to receive AirPlay</string>
+    <string name="waiting_network">Waiting for network…</string>
+    <string name="connecting">Connecting…</string>
+    <string name="connected_to">Connected to %1$s</string>
+    <string name="disconnected">Disconnected</string>
+    <string name="streaming">Streaming</string>
+
+    <!-- Notification -->
+    <string name="notification_channel_name">AirPlay Service</string>
+    <string name="notification_channel_description">Keeps AirPlay receiver active</string>
+    <string name="notification_title">Insight Play</string>
+    <string name="notification_text_idle">Ready to receive AirPlay</string>
+    <string name="notification_text_connected">Streaming from %1$s</string>
+
+    <!-- Errors -->
+    <string name="error_mdns">Could not start AirPlay advertisement</string>
+    <string name="error_service">AirPlay service error</string>
+    <string name="error_network">No network connection</string>
+    <string name="error_playback">Playback error</string>
+
+    <!-- Content Descriptions (Accessibility) -->
+    <string name="cd_logo">Insight Play logo</string>
+    <string name="cd_pulse_ring">AirPlay status indicator</string>
+    <string name="cd_airplay_badge">AirPlay badge</string>
+</resources>

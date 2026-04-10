@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/splash_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_dark"
+    android:keepScreenOn="true">
+
+    <!-- Logo icon (eye + play) -->
+    <ImageView
+        android:id="@+id/splash_logo_icon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_launcher_foreground"
+        android:contentDescription="@string/cd_logo"
+        android:alpha="0"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        app:layout_constraintBottom_toTopOf="@+id/splash_wordmark_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Wordmark container: "Insight" + "Play" side by side -->
+    <LinearLayout
+        android:id="@+id/splash_wordmark_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:alpha="0"
+        app:layout_constraintBottom_toTopOf="@+id/splash_tagline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/splash_logo_icon"
+        android:layout_marginBottom="24dp">
+
+        <TextView
+            android:id="@+id/splash_text_insight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/wordmark_insight"
+            style="@style/TextStyle.WordmarkInsight"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:id="@+id/splash_text_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/wordmark_play"
+            style="@style/TextStyle.WordmarkPlay" />
+    </LinearLayout>
+
+    <!-- Tagline: "Cast Anything. Instantly." -->
+    <TextView
+        android:id="@+id/splash_tagline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tagline"
+        style="@style/TextStyle.Tagline"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/splash_wordmark_container" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

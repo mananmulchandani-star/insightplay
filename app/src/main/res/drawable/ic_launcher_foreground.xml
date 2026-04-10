@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Outer glow effect - soft purple aura -->
+    <group
+        android:translateX="54"
+        android:translateY="54">
+
+        <!-- Glow ring - outermost -->
+        <path
+            android:pathData="M0,-28 C15.5,-28 28,-15.5 28,0 C28,15.5 15.5,28 0,28 C-15.5,28 -28,15.5 -28,0 C-28,-15.5 -15.5,-28 0,-28Z"
+            android:fillColor="#1A7B5CF0" />
+
+        <!-- Glow ring - middle -->
+        <path
+            android:pathData="M0,-24 C13.3,-24 24,-13.3 24,0 C24,13.3 13.3,24 0,24 C-13.3,24 -24,13.3 -24,0 C-24,-13.3 -13.3,-24 0,-24Z"
+            android:fillColor="#337B5CF0" />
+
+        <!-- Eye shape - outer boundary (sleek, angular, futuristic) -->
+        <!-- Left point to top curve to right point to bottom curve -->
+        <path
+            android:pathData="M-30,0 C-18,-18 -8,-22 0,-22 C8,-22 18,-18 30,0 C18,18 8,22 0,22 C-8,22 -18,18 -30,0Z"
+            android:fillColor="#0F0F0F"
+            android:strokeColor="#333333"
+            android:strokeWidth="0.3" />
+
+        <!-- Iris - outer ring with gradient feel (electric blue) -->
+        <path
+            android:pathData="M0,-16 C8.8,-16 16,-8.8 16,0 C16,8.8 8.8,16 0,16 C-8.8,16 -16,8.8 -16,0 C-16,-8.8 -8.8,-16 0,-16Z"
+            android:fillColor="#3B82F6" />
+
+        <!-- Iris - inner gradient ring (purple-blue blend) -->
+        <path
+            android:pathData="M0,-13 C7.2,-13 13,-7.2 13,0 C13,7.2 7.2,13 0,13 C-7.2,13 -13,7.2 -13,0 C-13,-7.2 -7.2,-13 0,-13Z"
+            android:fillColor="#5A4CF0" />
+
+        <!-- Iris - core (electric purple) -->
+        <path
+            android:pathData="M0,-10 C5.5,-10 10,-5.5 10,0 C10,5.5 5.5,10 0,10 C-5.5,10 -10,5.5 -10,0 C-10,-5.5 -5.5,-10 0,-10Z"
+            android:fillColor="#7B5CF0" />
+
+        <!-- Pupil - dark center -->
+        <path
+            android:pathData="M0,-7.5 C4.1,-7.5 7.5,-4.1 7.5,0 C7.5,4.1 4.1,7.5 0,7.5 C-4.1,7.5 -7.5,4.1 -7.5,0 C-7.5,-4.1 -4.1,-7.5 0,-7.5Z"
+            android:fillColor="#1a1a2e" />
+
+        <!-- Play triangle (white) - centered in pupil -->
+        <!-- Equilateral triangle pointing right, sized to fit pupil -->
+        <path
+            android:pathData="M-3,-5 L6,0 L-3,5Z"
+            android:fillColor="#FFFFFF" />
+
+        <!-- Light reflection spot - top-right of iris -->
+        <path
+            android:pathData="M4,-6 C5.1,-6 6,-5.1 6,-4 C6,-2.9 5.1,-2 4,-2 C2.9,-2 2,-2.9 2,-4 C2,-5.1 2.9,-6 4,-6Z"
+            android:fillColor="#44FFFFFF" />
+
+        <!-- Small reflection spot -->
+        <path
+            android:pathData="M-5,4 C-4.2,4 -3.5,4.7 -3.5,5.5 C-3.5,6.3 -4.2,7 -5,7 C-5.8,7 -6.5,6.3 -6.5,5.5 C-6.5,4.7 -5.8,4 -5,4Z"
+            android:fillColor="#22FFFFFF" />
+
+    </group>
+</vector>

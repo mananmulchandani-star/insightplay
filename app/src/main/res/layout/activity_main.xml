@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_dark"
+    android:keepScreenOn="true">
+
+    <!-- Video surface — hidden by default, shown during mirroring -->
+    <SurfaceView
+        android:id="@+id/surface_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <!-- Main receiver UI overlay -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/receiver_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Top-left logo with pulse ring -->
+        <FrameLayout
+            android:id="@+id/logo_container"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_margin="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Pulse ring animation background -->
+            <View
+                android:id="@+id/pulse_ring"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_pulse_ring"
+                android:contentDescription="@string/cd_pulse_ring" />
+
+            <!-- Logo icon -->
+            <ImageView
+                android:id="@+id/logo_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_launcher_foreground"
+                android:contentDescription="@string/cd_logo" />
+        </FrameLayout>
+
+        <!-- AirPlay badge — top right -->
+        <ImageView
+            android:id="@+id/airplay_badge"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_margin="28dp"
+            android:src="@drawable/ic_airplay_badge"
+            android:contentDescription="@string/cd_airplay_badge"
+            android:alpha="0.6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Center: Device name -->
+        <TextView
+            android:id="@+id/device_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextStyle.DeviceName"
+            tools:text="Fire TV Stick"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@+id/ready_message"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <!-- Ready to receive message -->
+        <TextView
+            android:id="@+id/ready_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ready_message"
+            style="@style/TextStyle.ReadyMessage"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/device_name" />
+
+        <!-- Sender name (shown briefly on connect) -->
+        <TextView
+            android:id="@+id/sender_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextStyle.SenderName"
+            android:visibility="gone"
+            android:gravity="center"
+            tools:text="Manan's iPhone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Network error message -->
+        <TextView
+            android:id="@+id/network_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/waiting_network"
+            android:textColor="@color/status_warning"
+            android:textSize="16sp"
+            android:visibility="gone"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

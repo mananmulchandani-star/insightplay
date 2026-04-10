@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base app theme — fullscreen dark, no action bar -->
+    <style name="Theme.InsightPlay" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@color/background_dark</item>
+        <item name="android:statusBarColor">@color/background_dark</item>
+        <item name="android:navigationBarColor">@color/background_dark</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="colorPrimary">@color/electric_purple</item>
+        <item name="colorPrimaryDark">@color/background_dark</item>
+        <item name="colorAccent">@color/electric_blue</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_subtitle</item>
+    </style>
+
+    <!-- Splash theme — identical but used separately for splash activity -->
+    <style name="Theme.InsightPlay.Splash" parent="Theme.InsightPlay">
+        <item name="android:windowBackground">@color/background_dark</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <!-- Main receiver screen — immersive fullscreen -->
+    <style name="Theme.InsightPlay.Main" parent="Theme.InsightPlay">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+    </style>
+
+    <!-- Text styles -->
+    <style name="TextStyle.DeviceName">
+        <item name="android:textSize">48sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">@font/outfit_semibold</item>
+        <item name="android:letterSpacing">0.04</item>
+    </style>
+
+    <style name="TextStyle.ReadyMessage">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/text_subtitle</item>
+        <item name="android:fontFamily">@font/outfit</item>
+    </style>
+
+    <style name="TextStyle.Tagline">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_tagline</item>
+        <item name="android:fontFamily">@font/outfit</item>
+    </style>
+
+    <style name="TextStyle.SenderName">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/electric_purple</item>
+        <item name="android:fontFamily">@font/outfit_semibold</item>
+    </style>
+
+    <style name="TextStyle.WordmarkInsight">
+        <item name="android:textSize">36sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">@font/outfit_semibold</item>
+        <item name="android:letterSpacing">0.08</item>
+    </style>
+
+    <style name="TextStyle.WordmarkPlay">
+        <item name="android:textSize">36sp</item>
+        <item name="android:textColor">@color/electric_purple</item>
+        <item name="android:fontFamily">@font/outfit_semibold</item>
+        <item name="android:letterSpacing">0.08</item>
+    </style>
+</resources>
