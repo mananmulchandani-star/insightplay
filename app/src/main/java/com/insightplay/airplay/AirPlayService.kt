@@ -47,6 +47,9 @@ class AirPlayService : Service() {
         const val EXTRA_SENDER_NAME = "sender_name"
         const val EXTRA_ERROR = "error"
 
+        const val BROADCAST_DEBUG_MSG = "com.insightplay.airplay.DEBUG_MSG"
+        const val EXTRA_DEBUG_MSG = "debug_msg"
+
         // States
         const val STATE_IDLE = 0
         const val STATE_ADVERTISING = 1
@@ -161,6 +164,7 @@ class AirPlayService : Service() {
 
                 withContext(Dispatchers.Main) {
                     updateState(STATE_ADVERTISING)
+                    sendDebug("Server running on port 7000 as ${deviceName}")
                 }
 
                 Log.i(TAG, "AirPlay receiver started as '$deviceName'")
@@ -183,22 +187,33 @@ class AirPlayService : Service() {
             val airTunesPort = MdnsAdvertiser.RAOP_PORT
 
             val consumer = object : AirplayDataConsumer {
+                private var videoStarted = false
+                private var audioStarted = false
+
                 override fun onVideo(video: ByteArray) {
-                    // Feed H.264 NAL units to video renderer
+                    if (!videoStarted) {
+                        videoStarted = true
+                        scope.launch(Dispatchers.Main) { sendDebug("Connection Success: Video data flowing!") }
+                    }
                     videoRenderer?.queueFrame(video)
                 }
 
                 override fun onVideoFormat(videoStreamInfo: com.github.serezhka.jap2lib.rtsp.VideoStreamInfo) {
                     Log.i(TAG, "Video format received")
+                    scope.launch(Dispatchers.Main) { sendDebug("Starting to connect (Video Format)") }
                 }
 
                 override fun onAudio(audio: ByteArray) {
-                    // Feed decoded audio to audio renderer
+                    if (!audioStarted) {
+                        audioStarted = true
+                        scope.launch(Dispatchers.Main) { sendDebug("Connection Success: Audio data flowing!") }
+                    }
                     audioRenderer?.queueAudio(audio)
                 }
 
                 override fun onAudioFormat(audioStreamInfo: com.github.serezhka.jap2lib.rtsp.AudioStreamInfo) {
                     Log.i(TAG, "Audio format received")
+                    scope.launch(Dispatchers.Main) { sendDebug("Starting to connect (Audio Format)") }
                 }
             }
 
@@ -327,6 +342,15 @@ class AirPlayService : Service() {
         Log.d(TAG, "State updated: $newState (sender=$senderName, error=$error)")
     }
 
+    private fun sendDebug(msg: String) {
+        val intent = Intent(BROADCAST_DEBUG_MSG).apply {
+            putExtra(EXTRA_DEBUG_MSG, msg)
+            setPackage(packageName)
+        }
+        sendBroadcast(intent)
+        Log.d(TAG, "DEBUG: $msg")
+    }
+
     fun getCurrentState(): Int = currentState
     fun getDeviceName(): String = deviceName
 
@@ -445,29 +469,9 @@ class AirPlayService : Service() {
     }
 
     private fun getDeviceMacAddress(): String {
-        return try {
-            val wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
-            val wifiInfo = wifiManager.connectionInfo
-            val macBytes = NetworkInterface.getNetworkInterfaces().toList()
-                .firstOrNull { it.name.equals("wlan0", ignoreCase = true) }
-                ?.hardwareAddress
-
-            if (macBytes != null) {
-                macBytes.joinToString(":") { "%02X".format(it) }
-            } else {
-                // Generate a consistent pseudo-MAC based on device
-                val hash = (Build.SERIAL + Build.MODEL).hashCode()
-                "AA:BB:%02X:%02X:%02X:%02X".format(
-                    (hash shr 24) and 0xFF,
-                    (hash shr 16) and 0xFF,
-                    (hash shr 8) and 0xFF,
-                    hash and 0xFF
-                )
-            }
-        } catch (e: Exception) {
-            Log.w(TAG, "Could not get MAC address", e)
-            "AA:BB:CC:DD:EE:FF"
-        }
+        // MUST return exact hardcoded MAC because java-airplay-server strictly enforces this
+        // for its internal JmDNS AirTunes payload. Dynamic MACs will cause handshake to drop.
+        return "01:02:03:04:05:06"
     }
 
     // ─── Wake Lock ───────────────────────────────────────────────────

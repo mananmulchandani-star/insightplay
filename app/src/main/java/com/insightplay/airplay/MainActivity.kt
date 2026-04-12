@@ -52,6 +52,9 @@ class MainActivity : AppCompatActivity() {
                 val senderName = intent.getStringExtra(AirPlayService.EXTRA_SENDER_NAME)
                 val error = intent.getStringExtra(AirPlayService.EXTRA_ERROR)
                 handleStateChange(state, senderName, error)
+            } else if (intent.action == AirPlayService.BROADCAST_DEBUG_MSG) {
+                val msg = intent.getStringExtra(AirPlayService.EXTRA_DEBUG_MSG)
+                binding.debugText.text = "Debug: $msg"
             }
         }
     }
@@ -100,7 +103,10 @@ class MainActivity : AppCompatActivity() {
         bindAirPlayService()
 
         // Register state receiver
-        val filter = IntentFilter(AirPlayService.BROADCAST_STATE_CHANGED)
+        val filter = IntentFilter().apply {
+            addAction(AirPlayService.BROADCAST_STATE_CHANGED)
+            addAction(AirPlayService.BROADCAST_DEBUG_MSG)
+        }
         registerReceiver(stateReceiver, filter, RECEIVER_NOT_EXPORTED)
     }
 
